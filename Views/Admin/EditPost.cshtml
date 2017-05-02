@@ -1,0 +1,37 @@
+﻿@model QueensOfCodeProject.UI.Models.Post
+
+@{
+    ViewBag.Title = "EditPost";
+}
+
+<h2>EditPost</h2>
+
+<div class="row">
+    <form method="post">
+        <div class="col-xs-12">
+            @Html.TextAreaFor(p => p.PostText, new { @class = "form-control" })
+            <label>Title: </label>
+            @Html.TextBoxFor(p => p.Title, new { @class = "form-control" })
+
+            <label>Creation Date: </label>
+            @Html.TextBoxFor(p => p.CreationDate, new { @class = "form-control" })
+
+            <label>Expiration Date: </label>
+            @Html.TextBoxFor(p => p.ExpirationDate, new { @class = "form-control" })
+
+            @*<label>visible</label>
+            @Html.Hiddenfor(p=>p.visible, new {@class = "form-control"})
+            <input type="hidden" id="visible" value="@Model.Visible" name="Visable" />
+            <input type="checkbox" id="chbx" @(Model.Visible != 0 ? "checked":"") onclick="(function(){$('#visible')[0].value = chbx.checked ? 1 : 0;}())"/>*@
+                  
+
+            <label>Visibility: </label>
+            @Html.TextBoxFor(p => p.Visible, new { @class = "form-control" })
+
+            <label>Featured: </label>
+            @Html.TextBoxFor(p => p.Featured, new { @class = "form-control" })
+           
+             <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+    </form>
+</div>

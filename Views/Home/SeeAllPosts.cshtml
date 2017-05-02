@@ -1,0 +1,116 @@
+﻿@model IEnumerable<QueensOfCodeProject.UI.Models.Post>
+@{
+    ViewBag.Title = "SeeAllPosts";
+    Layout = null;
+}
+
+
+<head>
+    <link href="~/Style/css/Login.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Bootstrap Template/Agency Template/css/agency2.css" rel="stylesheet" />
+
+
+    <style>
+
+            .dropbtn {
+            background-color: transparent;
+            color: black;
+            padding: 16px;
+            font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: black;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #fed136;
+        }
+        
+        h2 {
+            margin-top: 150px;
+        }
+
+    </style>
+
+</head>
+
+
+
+  <!-- Navigation -->
+<nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+            @*<a class="navbar-brand page-scroll" href="#page-top">Home</a>*@
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li>
+                    @Html.ActionLink("Home","Index","Home")
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<!--Header-->
+
+<h2>All Posts</h2>
+
+
+<!--All Posts Displayed-->
+
+<div class="row">
+    @foreach (var post in Model)
+    {
+        if (post.Visible == 1)
+        {
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <p>@post.Title</p>
+
+                <p>@(new HtmlString(post.PostText))</p>
+            </div>
+        }
+
+    }
+</div>

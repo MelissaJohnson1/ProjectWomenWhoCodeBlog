@@ -1,0 +1,61 @@
+﻿@model IEnumerable<QueensOfCodeProject.UI.Models.Post>
+
+@{
+    ViewBag.Title = "ListPosts";
+}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Post List</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Featured</th>
+                    <th>Visable</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+               @foreach(var post in Model)
+               {
+                   <tr>
+                       <td>@post.Title</td>
+                       <td>
+                           @if(@post.Featured == 1)
+                           {
+                              <p>Yes</p>
+                           }
+                           else
+                           {
+                               <p>No</p>
+                           }
+                       </td>
+                       <td>
+                           @if (@post.Visible == 1)
+                           {
+                               <p>Yes</p>
+                           }
+                           else
+                           {
+                               <p>No</p>
+                           }
+                       </td>
+                       <td>@Html.ActionLink("edit", "EditPost", "Admin", new { id = @post.Id }, new { @class = "btn btn-primary" })</td>
+                       <td>
+                           @using (Html.BeginForm("DeletePost", "Admin", new { id = @post.Id }, FormMethod.Post))
+                           {
+                               <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete @post.Title?');">Delete</button>
+                           }
+                        </td>
+                   </tr>
+               }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
